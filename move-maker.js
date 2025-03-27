@@ -16,8 +16,16 @@
         ];
 */
 function validateMove(move, board) {
+    if (typeof move === "string" && move.split(",").length === 2 ){
+            let [row, column] = move.split(",").map(Number);
     // Implement this at the end if you have time, otherwise you can help your teammates!
-    return true;
+            if (!isNaN(row) && !isNaN(column) && row > 0 && row <= board.length && column > 0 
+            && column <= board[row-1].length && board[row-1][column-1] ==="_"){
+                return true;
+            }
+    } 
+    console.log ("Try again...");
+    return false;
 }
 
 /*
@@ -32,5 +40,11 @@ function validateMove(move, board) {
             - Return true
 */
 export function makeMove(board, move, player) {
-    return false;
+    if (!(validateMove(move, board))) {
+        return false;
+    } else {
+        let [row, column] = move.split(",").map(Number);
+        board[row-1].splice(column-1, 1, player);
+        return true
+    }
 }
