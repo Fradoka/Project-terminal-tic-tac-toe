@@ -17,7 +17,14 @@ import { checkIfNoMovesLeft } from './board-printer.js';
     Return true if the player has made a move in all 3 squares in the row
     Otherwise, return false
 */
+
 function checkRow(board, player, rowNumber) {
+  for (let x of board[rowNumber]) {
+    if (x !== player) {
+      return false; 
+    }
+  }
+  return true;
 }
 
 /*
@@ -28,8 +35,17 @@ function checkRow(board, player, rowNumber) {
     Return true if the player has made a move in all 3 squares in the column
     Otherwise, return false
 */
+
 function checkColumn(board, player, columnNumber) {
+  for (let eachRow of board) {
+    if (eachRow[columnNumber] !== player) {
+      return false;
+    }
+  }
+  return true;
 }
+
+
 
 /*
     Given 2 parameters:
@@ -40,6 +56,10 @@ function checkColumn(board, player, columnNumber) {
 */
 function checkDiagonal(board, player) {
     // It may be easier to use an if statement than a loop here
+    if ((board[0][0] === player && board[1][1] === player && board[2][2] === player) || (board[0][2] === player && board[1][1] === player && board[2][0] ===player)) {
+      return true;
+    }
+    return false;      
 }
 
 
